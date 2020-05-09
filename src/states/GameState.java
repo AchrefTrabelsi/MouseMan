@@ -14,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 
 public class GameState extends State implements Serializable{
 	private static final long serialVersionUID = 1L;
+	//la grille du jeu
 	private int[][] level= {
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 			{1,3,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,3,1},
@@ -37,14 +38,13 @@ public class GameState extends State implements Serializable{
 			{1,3,6,6,6,6,6,6,6,6,6,6,6,0,0,0,0,6,6,6,6,6,6,6,6,6,6,6,3,1},
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 	};
-	private int type;
+	private int type; //multijoueur ou joueur unique
 	private GameData data;
-	private Mouse s;
-	private Cat c;
-	private  Boolean GameOver = false;
-	private  Boolean Won = false;
-	public  Boolean p = false;
-	private static boolean paused = false;
+	private Mouse s; //souris
+	private Cat c; // chat
+	private  Boolean GameOver = false; // jeux terminer ou en cours
+	private  Boolean Won = false; // souris à gagner ou jeu en cours
+	public  Boolean p = false; // jeu en pause ou non 
 	private EventHandler<KeyEvent> filter;
 	public void SetData(GameData data)	
 	{
@@ -65,15 +65,13 @@ public class GameState extends State implements Serializable{
 			c = new ManualCat(level,18,1,s,15,10);
 	}
 	@Override
+	//mise à jour du jeu
 	public void Update() {
-		if(!paused )
-		{
-			s.Update(data.assets);
-			if(c.isdead())
-				c.ToPrison();
-			else
-				c.Update();
-		}
+		s.Update(data.assets);
+		if(c.isdead())
+			c.ToPrison();
+		else
+			c.Update();
 		if(s.isDead())
 		{
 			GameOver=true;
@@ -97,12 +95,14 @@ public class GameState extends State implements Serializable{
 		}
 	}
 	@Override
+	//pauser le jeu
 	public void pause()
 	{
 		c.Pause();
 		s.Pause();
 	}
 	@Override
+	//reprendre le jeu
 	public void resume()
 	{
 		c.Resume();
@@ -110,6 +110,7 @@ public class GameState extends State implements Serializable{
 	}
 
 	@Override
+	//dessiner
 	public void Draw() {
 		data.screen.ClearScreen();
 		if(s.ReachedObjective())
@@ -133,15 +134,12 @@ public class GameState extends State implements Serializable{
 	}
 
 	@Override
+	//ajout du filtre
 	public void Init() {
 		GameState g= this;
 		filter = new EventHandler<KeyEvent>() {
 		    public void handle(KeyEvent e) {
-				if(e.getCode()==KeyCode.SPACE)
-				{
-					GameState.paused=!GameState.paused;
-				}
-				else if(e.getCode()==KeyCode.ESCAPE)
+				if(e.getCode()==KeyCode.ESCAPE)
 				{
 					if(p==false)
 					{
@@ -157,6 +155,7 @@ public class GameState extends State implements Serializable{
 		s.init();
 	}
 	@Override
+	//suppression du filtre
 	public void Delete()
 	{
 		Definitions.stage.removeEventFilter(KeyEvent.KEY_PRESSED,filter);

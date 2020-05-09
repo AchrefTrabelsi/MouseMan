@@ -16,6 +16,7 @@ public class SplashState extends State {
 	}
 
 	@Override
+	//chargement des resources
 	public void Update() {
 		if(drawn)
 		{
@@ -87,6 +88,7 @@ public class SplashState extends State {
 	}
 
 	@Override
+	//dessiner le logo
 	public void Draw() {
 		data.screen.AddImage(data.assets.GetImage("logo"), 0,0);
 		drawn=true;

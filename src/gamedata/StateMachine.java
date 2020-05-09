@@ -38,7 +38,7 @@ public class StateMachine {
 		if(x>0)
 			Removing+=x;
 	}
-
+	//ajouter ou retirer un state
 	public boolean ProcessStateChanges()
 	{
 		while(Removing>0 && States.size()>0)

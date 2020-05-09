@@ -76,6 +76,7 @@ public class PauseMenuState extends State {
 		QButton= new Rectangle(Definitions.WIDTH/2-qw/2,topmargin+(m+bh)*3,qw,bh);
 		
 	}
+	//enregister le jeu
 	private void Save()
 	{
 		String myDocuments =new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
@@ -113,6 +114,7 @@ public class PauseMenuState extends State {
 		gstate.Init();
 		gstate.p=true;
 	}
+	//charger l'enregistrement
 	private void Load()
 	{
 		String myDocuments =new JFileChooser().getFileSystemView().getDefaultDirectory().toString();

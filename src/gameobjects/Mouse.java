@@ -18,19 +18,19 @@ public class Mouse implements Serializable {
 	private int ndir;
 	private int odir = down;
 	private final double speed=2;
-	private int distance = 0;
-	private boolean energized=false;
-	private Clock energizedtimer = new Clock();
+	private int distance = 0; // distance entre le chat et la case où il est.
+	private boolean energized=false; // Etat de la souris
+	private Clock energizedtimer = new Clock(); // chronométre pour determiner durée de l'état agressif
 	private final int energizedtime = 5000;
 	private Rect rect ;
-	private int score =0;
+	private int score =0; // score du joueur
 	private Clock animationtimer = new Clock();
 	private int animation;
 	private final int animationtime = 180;
-	public static int winscore = 174;
-	private boolean updated=false;
+	public static int winscore = 174; // le score à atteindre
+	private boolean updated=false; // Etat du case (mise à jour ou non)
 	private boolean dead=false;
-	private boolean won=false;
+	private boolean won=false; //jeu gagné ou en cours
 	public Mouse(int[][] grid,int posx , int posy)
 	{
 		this.grid=grid;
@@ -39,11 +39,11 @@ public class Mouse implements Serializable {
 		rect = new Rect(posx*Definitions.SQUARE,posy*Definitions.SQUARE,Definitions.SQUARE,Definitions.SQUARE);
 		animationtimer.Start();
 	}
-	public boolean ReachedObjective()
+	public boolean ReachedObjective() // objectif atteint
 	{
 		return score>=winscore;
 	}
-	public void init()
+	public void init() // ajout du filtre pour detecter la touche appuyée
 	{
 		Definitions.stage.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
 			if(e.getCode()==KeyCode.UP)
@@ -83,7 +83,7 @@ public class Mouse implements Serializable {
 		}
 	}
 
-	private void onmoveupdate(int y,int x,AssetManager s)
+	private void onmoveupdate(int y,int x,AssetManager s) // mise à jour de la case
 	{
 		if(grid[y][x]==Definitions.ENERGIE_DRINK)
 		{
@@ -228,11 +228,11 @@ public class Mouse implements Serializable {
 		}
 		animationupdate();
 	}
-	public boolean Won()
+	public boolean Won() // jeu gagné(true) ou en cours(false)
 	{
 		return won;
 	}
-	public boolean isEnergized()
+	public boolean isEnergized() // retourne l'état de la souris (agressif(true) ou normal(false))
 	{
 		return energized;
 	}
@@ -267,7 +267,8 @@ public class Mouse implements Serializable {
 				data.screen.AddImage(data.assets.GetImage("MouseLeft"), rect,0+animation*(Definitions.SQUARE+1),0,Definitions.SQUARE,Definitions.SQUARE);
 		}
 	}
-	public void dead(boolean b) {
+	public void dead(boolean b) //mise a jour de l'état de la souris
+	{
 		dead=true;
 		
 	}

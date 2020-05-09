@@ -31,6 +31,7 @@ public class AssetManager {
 	{
 		return Sounds.get(name);
 	}
+	//lancer le son principale
 	public void MPlay(String s,int cyclecount )
 	{
 		if(mp!=null)
@@ -46,16 +47,19 @@ public class AssetManager {
         mp = new MediaPlayer(Sounds.get(s));
         mp.play();
 	}
+	//lancer le son secondaire
 	public void Play(String s)
 	{
 		MediaPlayer mp0 = new MediaPlayer(Sounds.get(s));
         mp0.play();
 	}
+	//régler le volume
 	public void SetVolume(Double v)
 	{
 		if(mp!=null)
 			mp.setVolume(v);
 	}
+	//arreter le son principale
 	public void MStop()
 	{
 		if(mp!=null)

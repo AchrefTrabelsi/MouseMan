@@ -23,7 +23,7 @@ public class ManualCat extends Cat {
 		animationtimer.Start();
 	}
 	@Override
-	public void init()
+	public void init() // ajout du filtre pour detecter la touche appuyée
 	{
 		Definitions.stage.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
 			if(e.getCode()==KeyCode.Z)

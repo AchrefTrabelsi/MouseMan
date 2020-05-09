@@ -14,9 +14,12 @@ public class MainMenuState extends State {
 	private Rectangle SgButton,MuButton,QButton;
 	private String sgButton="Single",muButton="Multi",qButton="Quit";
 	private EventHandler<MouseEvent> filter;
-	private int Mousex,Mousey,rMousex,rMousey;
-	private int x,y;
+	private int Mousex,Mousey,rMousex,rMousey; // position de la souris lors du click et lors du lâchage
+	private int x,y;//position actuelle de la souris
+	//SingleClicked,MultiClicked,QuitClicked : l'état du button
+	// released,clicked : l'etat de la button gauche de la souris
 	private Boolean SingleClicked = false , MultiClicked = false,released = false,QuitClicked = false;
+	//les dimensions et les positions des boutons
 	private static double s = 0.7;
 	private static double qw= 240*s;
 	private static double sgw= 420*s;
@@ -61,11 +64,12 @@ public class MainMenuState extends State {
 		
 	}
 	@Override
-	public void Delete()
+	public void Delete() // arrête la musique
 	{
 		data.assets.MStop();
 	}
 	@Override
+	//mise à jour de l'état des bouttons
 	public void Update() {
 		if(Clicked)
 		{
@@ -157,6 +161,7 @@ public class MainMenuState extends State {
 
 
 	@Override
+	//dessiner les bouttons
 	public void Draw() {
 		data.screen.ClearScreen();
 		data.screen.AddImage(data.assets.GetImage("bg"),0,0);
@@ -166,6 +171,7 @@ public class MainMenuState extends State {
 	}
 
 	@Override
+	//démarrage du son
 	public void Init() {
 		data.assets.MPlay("Menu",-1);
 		data.assets.SetVolume(0.2);		

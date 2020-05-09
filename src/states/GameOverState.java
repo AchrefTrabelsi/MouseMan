@@ -16,7 +16,7 @@ public class GameOverState extends State {
 	private EventHandler<MouseEvent> filter;
 	private int Mousex,Mousey,rMousex,rMousey;
 	private int x,y;
-	private Boolean MainMenuClicked = false  , RestartClicked = false,released = false;
+	private Boolean MainMenuClicked = false  , RestartClicked = false,released = false; 
 	private static double s = 0.7;
 	private static double mw= 350*s;
 	private static double rw= 300*s;

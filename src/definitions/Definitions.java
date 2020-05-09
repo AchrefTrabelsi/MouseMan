@@ -5,13 +5,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class Definitions {
-	public static final double scale =1;
 	public static BorderPane root;
 	public static Stage stage;
 	public static final double SPLASH_STATE_TIME = 2.5;
 	public static final int Multiplayer = 1,SinglePlayer = 0;
-	public static final int N = 21;
-	public static final int M = 30;
+	public static final int N = 21; // nombre de lignes
+	public static final int M = 30; // nombre de colonnes
 	public static final int SQUARE = 30;
 	public static final double FPS = 60;
 	public static final double WIDTH = M*SQUARE;
@@ -22,7 +21,8 @@ public class Definitions {
 	public static final int PRISON = 5;
 	public static final int CHEESE = 6;
 	public static final int FINISH = 10;
-	public static final int OUTOFPRISONY = 7;
+	//position du chat lors du sortie du prison
+	public static final int OUTOFPRISONY = 7; 
 	public static final int OUTOFPRISONX = 14;
 	public static final String LOGO = "logo1.png";
 	public static final String PATH_CLICKS = "clicksound.mp3";
@@ -75,12 +75,7 @@ public class Definitions {
 	public static final String PATH_RESTART = "restartbutton0.png";
 	public static final String PATH_WIN = "won.png";
 	public static final String PATH_LOSE = "lost.png";
-
 	public static final String PATH_BACKGROUND = "bg.png";
 	public static final String PATH_BACKGROUND0 = "bg_0.51.png";
-
-
-
-
 
 }

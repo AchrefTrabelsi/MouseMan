@@ -24,7 +24,8 @@ public class AutoCat extends Cat {
 	{
 		return dead;
 	}
-	private void SetDirection(int dx,int dy)
+	private void SetDirection(int dx,int dy) // mise a jour de la direction en fonction de dx et dy qui presente 
+											//la difference entre la position à atteindre et la position actuelle
 	{
 		if(Math.abs(dx)>Math.abs(dy))
 		{
@@ -333,7 +334,7 @@ public class AutoCat extends Cat {
 		animationupdate();
 
 	}
-	private void animationupdate()
+	private void animationupdate() // mise a jour de l'image à dessiner
 	{
 		if(animationtimer.ElapsedTimeinMilliSeconds()>animationtime)
 		{
