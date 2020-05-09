@@ -27,7 +27,7 @@ public class Mouse implements Serializable {
 	private Clock animationtimer = new Clock();
 	private int animation;
 	private final int animationtime = 180;
-	public static int winscore = 172;
+	public static int winscore = 174;
 	private boolean updated=false;
 	private boolean dead=false;
 	private boolean won=false;

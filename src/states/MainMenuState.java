@@ -11,16 +11,15 @@ import javafx.scene.shape.Rectangle;
 
 public class MainMenuState extends State {
 	private GameData data;
-	private Rectangle SgButton,MuButton,OpButton,QButton;
-	private String sgButton="Single",muButton="Multi",opButton="Options",qButton="Quit";
+	private Rectangle SgButton,MuButton,QButton;
+	private String sgButton="Single",muButton="Multi",qButton="Quit";
 	private EventHandler<MouseEvent> filter;
 	private int Mousex,Mousey,rMousex,rMousey;
 	private int x,y;
-	private Boolean SingleClicked = false , OptionsClicked = false , MultiClicked = false,released = false,QuitClicked = false;
+	private Boolean SingleClicked = false , MultiClicked = false,released = false,QuitClicked = false;
 	private static double s = 0.7;
 	private static double qw= 240*s;
 	private static double sgw= 420*s;
-	private static double opw= 320*s;
 	private static double muw= 380*s;
 	private static double topmargin= 150;
 	private static double bottommargin= 100;
@@ -55,11 +54,10 @@ public class MainMenuState extends State {
 		    }
 	    };
 	    Definitions.stage.addEventFilter(MouseEvent.ANY,filter);
-	    int m = (int) (Definitions.HEIGHT-topmargin-bottommargin-bh*4)/3;
+	    int m = (int) (Definitions.HEIGHT-topmargin-bottommargin-bh*3)/2;
 		SgButton= new Rectangle(Definitions.WIDTH/2-sgw/2,topmargin,sgw,bh);
 		MuButton= new Rectangle(Definitions.WIDTH/2-muw/2,topmargin+m+bh,muw,bh);
-		OpButton= new Rectangle(Definitions.WIDTH/2-opw/2,topmargin+(m+bh)*2,opw,bh);
-		QButton= new Rectangle(Definitions.WIDTH/2-qw/2,topmargin+(m+bh)*3,qw,bh);
+		QButton= new Rectangle(Definitions.WIDTH/2-qw/2,topmargin+(m+bh)*2,qw,bh);
 		
 	}
 	@Override
@@ -81,11 +79,6 @@ public class MainMenuState extends State {
 				MultiClicked=true;
 				data.assets.Play("Click");
 			}
-			else if(OpButton.contains(Mousex, Mousey))
-			{
-				OptionsClicked=true;
-				data.assets.Play("Click");
-			}
 			else if(QButton.contains(Mousex, Mousey))
 			{
 				QuitClicked=true;
@@ -102,10 +95,6 @@ public class MainMenuState extends State {
 		{
 			data.machine.AddState(new GameState(data,Definitions.Multiplayer));
 		}
-		else if (OptionsClicked && released && OpButton.contains(rMousex, rMousey))
-		{
-			System.out.print("options");
-		}
 		else if (QuitClicked && released && QButton.contains(rMousex, rMousey))
 		{
 			System.exit(0);
@@ -115,7 +104,6 @@ public class MainMenuState extends State {
 			released = false;
 			SingleClicked=false;
 			MultiClicked=false;
-			OptionsClicked=false;
 			QuitClicked=false;
 		}
 		if(SgButton.contains(x,y))
@@ -128,21 +116,6 @@ public class MainMenuState extends State {
 			{
 				sgButton = "SingleHover";
 			}
-			muButton="Multi";
-			opButton="Options";
-			qButton="Quit";
-		}
-		else if(OpButton.contains(x,y))
-		{
-			if(OptionsClicked==true)
-			{
-				opButton="OptionsClicked";
-			}
-			else
-			{
-				opButton = "OptionsHover";
-			}
-			sgButton="Single";
 			muButton="Multi";
 			qButton="Quit";
 		}
@@ -157,7 +130,6 @@ public class MainMenuState extends State {
 				muButton = "MultiHover";
 			}
 			sgButton="Single";
-			opButton="Options";
 			qButton="Quit";
 		}
 		else if(QButton.contains(x,y))
@@ -172,13 +144,11 @@ public class MainMenuState extends State {
 			}
 			sgButton="Single";
 			muButton="Multi";
-			opButton="Options";
 		}
 		else
 		{
 			sgButton="Single";
 			muButton="Multi";
-			opButton="Options";
 			qButton="Quit";
 
 		}
@@ -193,7 +163,6 @@ public class MainMenuState extends State {
 		data.screen.AddImage(data.assets.GetImage(muButton), MuButton);
 		data.screen.AddImage(data.assets.GetImage(sgButton), SgButton);
 		data.screen.AddImage(data.assets.GetImage(qButton), QButton);
-		data.screen.AddImage(data.assets.GetImage(opButton), OpButton);
 	}
 
 	@Override
